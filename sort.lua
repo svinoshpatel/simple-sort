@@ -33,11 +33,14 @@ end
 -- Bubble sort
 function sort.bubble(data, reverse, first, last)
   local flag = false
+  local iterations = 0
+  local swaps = 0
   first = first or 1
   last = last or #data
   reverse = reverse or false
 
   for i = first, last do
+    iterations = iterations + 1
     if flag == true then
       break
     end
@@ -46,10 +49,13 @@ function sort.bubble(data, reverse, first, last)
     for j = last, i, -1 do
       if j ~= first and ( ( not reverse and data[j] < data[j-1] ) or ( reverse and data[j] > data[j-1] ) ) then
         swap(data, j, j-1)
+        swaps = swaps + 1
         flag = false
       end
     end
   end
+  print("Outer cycle iterations: " .. iterations)
+  print("Swaps: " .. swaps)
 end
 
 -- Insertion sort
@@ -57,20 +63,26 @@ function sort.insert(data, reverse, first, last)
   first = first or 1
   last = last or #data
   reverse = reverse or false
+  local iterations = 0
+  local shifts = 0
 
 	for i = first+1, last do
 	  local temp = data[i]
 	  local j = i - 1
+	  iterations = iterations + 1
 
     -- Shift of table elements
     while j >= first and ( ( not reverse and data[j] > temp ) or ( reverse and data[j] < temp ) ) do
       data[j+1] = data[j]
       j = j - 1
+      shifts = shifts + 1
     end
 
     -- Insertion of element from buffer
     data[j+1] = temp
   end
+  print("Iterations: " .. iterations)
+  print("Shifts: " .. shifts)
 end
 
 -- Selection sort
@@ -78,18 +90,38 @@ function sort.select(data, reverse, first, last)
   first = first or 1
   last = last or #data
   reverse = reverse or false
+  local iterations = 0
+  local innerIterations = 0
+  local swaps = 0
 
   for i = first, last do
+    iterations = iterations + 1
     if not reverse then
-      MinValue = min(data, i, last)
+      MinValue = i
+      for j = i+1, last do
+        innerIterations = innerIterations + 1
+      	if data[MinValue] > data[j] then
+      	  MinValue = j
+      	end
+      end
     else
-      MinValue = max(data, i, last)
+      MinValue = i
+      for j = i+1, last do
+        innerIterations = innerIterations + 1
+      	if data[MinValue] < data[j] then
+      	  MinValue = j
+      	end
+      end
     end
 
     if MinValue ~= i then
     	swap(data, i, MinValue)
+    	swaps = swaps + 1
     end
   end
+  print("Outer cycle iterations: " .. iterations)
+  print("Inner cycle iterations: " .. innerIterations)
+  print("Swaps: " .. swaps)
 end
 
 return sort

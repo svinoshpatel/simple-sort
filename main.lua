@@ -1,40 +1,39 @@
 local sort = require("sort")
 
-local data = { 9, 5, 7, 2, 8, 1, 3, 4, 6 }
+local data1 = { 9, 5, 7, 2, 8, 1, 3, 4, 6 }
+local data2 = { 9, 5, 7, 2, 8, 1, 3, 4, 6 }
+local data3 = { 9, 5, 7, 2, 8, 1, 3, 4, 6 }
+local data4 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0}
+local data5 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0}
+local data6 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0}
 
-print("Choose sorting algorithm")
-print('[B]ubble sort')
-print('[I]nsertion sort')
-print('[S]election sort')
-print("")
-io.write("Answer: ")
-local algorithm = io.read()
-print("------------------")
-if algorithm == "B" or algorithm == "b" then
   print("Bubble sort")
   print("")
   print("unsorted")
-  sort.show(data)
-  sort.bubble(data)
+  sort.show(data4)
+  sort.bubble(data4)
   print("")
   print("sorted")
-  sort.show(data)
-elseif algorithm == "I" or algorithm == "i" then
+  sort.show(data4)
+
+  print("")
+  print("--------------")
   print("Insertion sort")
   print("")
   print("unsorted")
-  sort.show(data)
-  sort.insert(data)
+  sort.show(data5)
+  sort.insert(data5)
   print("")
   print("sorted")
-  sort.show(data)
-elseif algorithm == "S" or algorithm == "s" then
+  sort.show(data5)
+
+  print("")
+  print("--------------")
   print("Selection sort")
   print("")
   print("unsorted")
-  sort.show(data)
-  sort.select(data)
+  sort.show(data6)
+  sort.select(data6)
   print("")
   print("sorted")
-  sort.show(data)
-end
+  sort.show(data6)
