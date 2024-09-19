@@ -35,6 +35,7 @@ function sort.bubble(data, reverse, first, last)
   local flag = false
   local iterations = 0
   local swaps = 0
+  local innerIterations = 0
   first = first or 1
   last = last or #data
   reverse = reverse or false
@@ -47,6 +48,7 @@ function sort.bubble(data, reverse, first, last)
     flag = true
 
     for j = last, i, -1 do
+      innerIterations = innerIterations + 1
       if j ~= first and ( ( not reverse and data[j] < data[j-1] ) or ( reverse and data[j] > data[j-1] ) ) then
         swap(data, j, j-1)
         swaps = swaps + 1
@@ -55,6 +57,7 @@ function sort.bubble(data, reverse, first, last)
     end
   end
   print("Outer cycle iterations: " .. iterations)
+  print("Inner cycle iterations: " .. innerIterations)
   print("Swaps: " .. swaps)
 end
 
@@ -81,8 +84,8 @@ function sort.insert(data, reverse, first, last)
     -- Insertion of element from buffer
     data[j+1] = temp
   end
-  print("Iterations: " .. iterations)
-  print("Shifts: " .. shifts)
+  print("Outer cycle iterations: " .. iterations)
+  print("Shifts (inner cycle iterations): " .. shifts)
 end
 
 -- Selection sort
